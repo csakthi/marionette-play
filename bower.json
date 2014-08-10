@@ -1,0 +1,37 @@
+{
+  "name": "users",
+  "version": "0.0.1",
+  "description": "Backbone Play",
+  "directory": "/libs",
+  "main": "index.html",
+  "keywords": [
+    "Backbone",
+    "tutorials"
+  ],
+  "authors": [
+    "Sakthi Chinnasamy"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.0",
+    "underscore": "~1.6.0",
+    "backbone": "~1.1.2",
+    "bootstrap": "~2.3.2",
+    "requirejs": "~2.1.14",
+    "marionette": "~2.1.0",
+    "jquery-ui": "~1.11.0",
+    "json2": "*",
+    "backbone.eventbinder" : "*"
+  },
+  "resolutions": {
+    "jquery": ">=1.6"
+  }
+}
