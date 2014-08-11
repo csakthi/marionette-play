@@ -3,8 +3,12 @@
  */
 // Filename: app.js
 define([
-    'marionette'
-], function (Marionette) {
+    'marionette',
+    'backbone',
+    'models/Contact',
+    'views/ContactView',
+    'views/ContactCollectionView'
+], function (Marionette, Backbone, Contact, ContactView, ContactCollectionView) {
 
     var initialize = function () {
         console.log("Initializing the application....");
@@ -16,15 +20,24 @@ define([
             mainRegion: "#main-region"
         });
 
-        ContactManager.StaticView = Marionette.ItemView.extend({
-            template: "#static-template"
-        });
+        var contactsCollectionView = new ContactCollectionView();
 
-        ContactManager.addInitializer(function(options) {
+        ContactManager.addInitializer(function (options) {
+            //Backbone.History.start();
             console.log("ContactManager has started!");
-            var staticView = new ContactManager.StaticView();
-            ContactManager.mainRegion.show(staticView);
-            console.log(staticView);
+
+            var alice = new Contact({
+                firstName: "Alice",
+                lastName: "Arten",
+                phoneNumber: "555-0184"
+            });
+
+            var aliceView = new ContactView({
+                model: alice
+            });
+
+            ContactManager.mainRegion.show(aliceView);
+
         });
 
         ContactManager.start();

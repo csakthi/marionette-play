@@ -3,6 +3,7 @@
     <meta charset="utf-8">
     <title>Marionette Play</title>
     <link href="libs/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="assets/css/application.css" rel="stylesheet">
 </head>
 
 <body>
@@ -23,6 +24,17 @@
 
 <script type="text/template" id="static-template">
     <p>This is text that was rendered by our Marionette app.</p>
+</script>
+
+<script type="text/template" id="different-static-template">
+    <p>Text from a different template...</p>
+</script>
+
+<script type="text/template" id="list-item-template">
+    <li>One item</li>
+</script>
+
+<script type="text/template" id="contact-template"> <p><%= firstName %> <%= lastName %></p>
 </script>
 
 <script data-main="js/main" src="libs/requirejs/require.js"></script>
