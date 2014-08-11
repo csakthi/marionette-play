@@ -7,8 +7,9 @@ define([
     'backbone',
     'models/Contact',
     'views/ContactView',
-    'views/ContactCollectionView'
-], function (Marionette, Backbone, Contact, ContactView, ContactCollectionView) {
+    'views/ContactCollectionView',
+    'collections/ContactCollection'
+], function (Marionette, Backbone, Contact, ContactView, ContactCollectionView, ContactCollection) {
 
     var initialize = function () {
         console.log("Initializing the application....");
@@ -20,25 +21,38 @@ define([
             mainRegion: "#main-region"
         });
 
-        var contactsCollectionView = new ContactCollectionView();
 
         ContactManager.addInitializer(function (options) {
             //Backbone.History.start();
             console.log("ContactManager has started!");
 
-            var alice = new Contact({
-                firstName: "Alice",
-                lastName: "Arten",
-                phoneNumber: "555-0184"
+            var contactCollection = new ContactCollection([
+                {
+                    firstName: "Bob",
+                    lastName: "Brigham",
+                    phoneNumber: "555-0163"
+                },
+                {
+                    firstName: "Alice",
+                    lastName: "Arten",
+                    phoneNumber: "555-0184"
+                },
+                {
+                    firstName: "Charlie",
+                    lastName: "Campbell",
+                    phoneNumber: "555-0129"
+                }
+            ]);
+
+
+            var contactCollectionView = new ContactCollectionView({
+                collection: contactCollection
             });
 
-            var aliceView = new ContactView({
-                model: alice
-            });
-
-            ContactManager.mainRegion.show(aliceView);
+            ContactManager.mainRegion.show(contactCollectionView);
 
         });
+
 
         ContactManager.start();
         console.log("Application is started. Have a fun!");

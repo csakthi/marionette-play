@@ -3,8 +3,9 @@
  */
 
 define([
-    'backbone'
-], function (Backbone) {
+    'backbone',
+    'models/Contact'
+], function (Backbone, Contact) {
     var ContactCollection = Backbone.Collection.extend({
         model: Contact
     });

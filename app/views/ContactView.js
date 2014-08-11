@@ -5,7 +5,8 @@ define([
     'marionette'
 ], function (Marionette) {
 
-    var ContactView = Marionette.ItemView.extend({ template: "#contact-template",
+    var ContactView = Marionette.ItemView.extend({
+        template: "#contact-template",
         events: {
             //<event selector: function name>
             //click is the event, p is paragraph, alertPhoneNumber is handler function
