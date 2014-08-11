@@ -7,7 +7,8 @@ define([
     'models/Contact'
 ], function (Backbone, Contact) {
     var ContactCollection = Backbone.Collection.extend({
-        model: Contact
+        model: Contact,
+        comparator: "firstName"
     });
     return ContactCollection;
 });

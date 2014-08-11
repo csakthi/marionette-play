@@ -6,6 +6,7 @@ define([
 ], function (Marionette) {
 
     var ContactView = Marionette.ItemView.extend({
+        tagname: "li",
         template: "#contact-template",
         events: {
             //<event selector: function name>

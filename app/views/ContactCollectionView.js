@@ -9,6 +9,7 @@ define([
     var ContactCollectionView = Marionette.CollectionView.extend({
         tagname: "ul",
         childView: ContactView
+
     });
     return ContactCollectionView;
 });
