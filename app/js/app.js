@@ -14,18 +14,20 @@ define([
     var initialize = function () {
         console.log("Initializing the application....");
 
-        var ContactManager = new Marionette.Application();
+        var App = new Marionette.Application();
         //console.log(ContactManager);
 
-        ContactManager.addRegions({
+        App.addRegions({
             mainRegion: "#main-region"
         });
 
 
-        ContactManager.addInitializer(function (options) {
+        App.addInitializer(function (options) {
             //Backbone.History.start();
-            console.log("ContactManager has started!");
+            console.log("App has started!");
 
+            var contacts = App.request("contact:contacts");
+            
             var contactCollection = new ContactCollection([
                 {
                     firstName: "Bob",
@@ -49,12 +51,12 @@ define([
                 collection: contactCollection
             });
 
-            ContactManager.mainRegion.show(contactCollectionView);
+            App.mainRegion.show(contactCollectionView);
 
         });
 
 
-        ContactManager.start();
+        App.start();
         console.log("Application is started. Have a fun!");
     };
 

@@ -33,5 +33,6 @@ require([
     'js/app','marionette'
 ], function (App, Marionette) {
     App.initialize();
+    window.App = App;
     //window.Marionette = Marionette;
 });
