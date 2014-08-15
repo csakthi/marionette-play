@@ -1,4 +1,9 @@
-App.module("Contact", function(Entities, ContactManager, Backbone,
+define([
+    'marionette',
+    'backbone',
+], function (Marionette, Backbone) {
+	
+return Marionette.module("Contact", function(Entities, ContactManager, Backbone,
 		Marionette, $, _) {
 	Entities.Contact = Backbone.Model.extend({});
 	Entities.ContactCollection = Backbone.Collection.extend({
@@ -27,7 +32,7 @@ App.module("Contact", function(Entities, ContactManager, Backbone,
 			}
 	};
 		
-	App.reqres.setHandler("contact:contacts", function(){
+	Marionette.reqres.setHandler("contact:contacts", function(){
 			return API.getContactEntities();
 	});
 });

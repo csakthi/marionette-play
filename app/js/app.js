@@ -9,12 +9,16 @@ define([
     'views/ContactView',
     'views/ContactCollectionView',
     'collections/ContactCollection'
-], function (Marionette, Backbone, Contact, ContactView, ContactCollectionView, ContactCollection) {
+    'js/contact'
+], function (Marionette, Backbone, Contact, ContactView, ContactCollectionView, ContactCollection, ContactModule) {
 
     var initialize = function () {
         console.log("Initializing the application....");
 
         var App = new Marionette.Application();
+
+        App.ContactModule = ContactModule;
+        
         //console.log(ContactManager);
 
         App.addRegions({
@@ -59,6 +63,7 @@ define([
         App.start();
         console.log("Application is started. Have a fun!");
     };
+
 
     //creates new javascript object with initialize a member
     return {initialize: initialize};
