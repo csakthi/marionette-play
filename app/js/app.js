@@ -1,71 +1,34 @@
 /**
- * Created by sakthi on 8/7/14.
+ * Created by sakthi on 8/16/14.
  */
-// Filename: app.js
-define([
-    'marionette',
-    'backbone',
-    'models/Contact',
-    'views/ContactView',
-    'views/ContactCollectionView',
-    'collections/ContactCollection'
-    'js/contact'
-], function (Marionette, Backbone, Contact, ContactView, ContactCollectionView, ContactCollection, ContactModule) {
+var ContactManager = new Marionette.Application();
 
-    var initialize = function () {
-        console.log("Initializing the application....");
-
-        var App = new Marionette.Application();
-
-        App.ContactModule = ContactModule;
-        
-        //console.log(ContactManager);
-
-        App.addRegions({
-            mainRegion: "#main-region"
-        });
+ContactManager.addRegions({
+    mainRegion: "#main-region"
+});
 
 
-        App.addInitializer(function (options) {
-            //Backbone.History.start();
-            console.log("App has started!");
+ContactManager.on("start", function () {
+    console.log("ContactManager has started!");
+    //ContactManager.ContactsApp.List.Controller.listContacts();
 
-            var contacts = App.request("contact:contacts");
-            
-            var contactCollection = new ContactCollection([
-                {
-                    firstName: "Bob",
-                    lastName: "Brigham",
-                    phoneNumber: "555-0163"
-                },
-                {
-                    firstName: "Alice",
-                    lastName: "Arten",
-                    phoneNumber: "555-0184"
-                },
-                {
-                    firstName: "Charlie",
-                    lastName: "Campbell",
-                    phoneNumber: "555-0129"
-                }
-            ]);
-
-
-            var contactCollectionView = new ContactCollectionView({
-                collection: contactCollection
-            });
-
-            App.mainRegion.show(contactCollectionView);
-
-        });
-
-
-        App.start();
-        console.log("Application is started. Have a fun!");
+    ContactManager.navigate = function (route, options) {
+        options || (options = {});
+        Backbone.history.navigate(route, options);
     };
 
+    ContactManager.getCurrentRoute = function () {
+        return Backbone.history.fragment
+    };
 
-    //creates new javascript object with initialize a member
-    return {initialize: initialize};
+    if (Backbone.history) {
+        Backbone.history.start();
+
+        if (this.getCurrentRoute() === "") {
+            ContactManager.trigger("contacts:list");
+        }
+
+
+    }
 
 });
