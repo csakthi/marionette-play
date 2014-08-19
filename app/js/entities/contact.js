@@ -2,13 +2,17 @@
  * Created by sakthi on 8/16/14.
  */
 ContactManager.module("Entities", function (Entities, ContacManager, BackBone, Marionette, $, _) {
-    Entities.Contact = Backbone.Model.extend({});
+
+    Entities.Contact = Backbone.Model.extend({
+        urlRoot: "contacts"
+    });
 
     //to use local web store
     Entities.configureStorage(Entities.Contact);
 
     Entities.ContactCollection =
         BackBone.Collection.extend({
+            url: "contacts",
             model: Entities.Contact,
             comparator: "firstName"
         });
@@ -45,6 +49,9 @@ ContactManager.module("Entities", function (Entities, ContacManager, BackBone, M
 
         getContactEntity: function (contactId) {
             var contact = new Entities.Contact({id: contactId});
+            setTimeout(function () {
+                contact.fetch();
+            }, 2000);
             contact.fetch();
             return contact;
         }
